@@ -1,5 +1,7 @@
 package it.uniroma3.silph.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -48,6 +50,9 @@ public class User {
      */
     @Column(name = "role")
     protected String role;
+    
+    @OneToMany(mappedBy = "user")
+    private List<Richiesta> richieste;
 
     /**
      * Constructor
@@ -169,4 +174,18 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+	/**
+	 * @return the richieste
+	 */
+	public List<Richiesta> getRichieste() {
+		return richieste;
+	}
+
+	/**
+	 * @param richieste the richieste to set
+	 */
+	public void setRichieste(List<Richiesta> richieste) {
+		this.richieste = richieste;
+	}
 }

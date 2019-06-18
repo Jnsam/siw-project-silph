@@ -1,6 +1,8 @@
 package it.uniroma3.silph;
 
+import it.uniroma3.silph.model.Foto;
 import it.uniroma3.silph.model.User;
+import it.uniroma3.silph.storage.FotoRepository;
 import it.uniroma3.silph.storage.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class DBPopulation implements ApplicationRunner {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private FotoRepository fotoRepository;
 
 
     public void run(ApplicationArguments args) throws Exception {
@@ -41,6 +46,11 @@ public class DBPopulation implements ApplicationRunner {
         String guestPassword = new BCryptPasswordEncoder().encode("gvpass");
         guest.setPassword(guestPassword);
         guest = this.userRepository.save(guest);
+        
+        System.out.println("Creating Foto...");
+        
+        Foto foto = new Foto(12345, "prova.jpeg", "Prova", "Foto di prova");
+        foto = this.fotoRepository.save(foto);
 
         System.out.println("Done.\n");
     }
