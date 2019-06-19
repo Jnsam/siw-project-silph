@@ -1,0 +1,21 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Foto</title>
+</head>
+<body>
+    <div>
+    	<h4>Foto</h4>
+		<div>
+			<table>
+				<tr>
+					<th>Immagine: </th>
+				</tr>
+				<tr th:each="foto : ${fotos}">
+					<td><a th:href="@{'http://www.sitoimmagini.it' + '/' + ${foto.indirizzo}}"><span th:text="${foto.titolo}"></span></a></td>					
+                </tr>
+            </table>
+   		</div>
+    </div>
+</body>
+</html>
