@@ -61,16 +61,16 @@ public class DBPopulation implements ApplicationRunner {
         
         System.out.println("Creating Foto...");
 
-        Foto foto = new Foto(12345, "prova.jpeg", "Prova", "Foto di prova");
+        Foto foto = new Foto(12345, "https://i.imgur.com/q721iNU.png", "Prova", "Foto di prova");
         foto = this.fotoService.save(foto);
 
-        Foto foto1 = new Foto(12346, "1prova.jpeg", "Uno Prova", "Foto di prova uno");
+        Foto foto1 = new Foto(12346, "https://i.imgur.com/q721iNU.png", "Uno Prova", "Foto di prova uno");
         foto1 = this.fotoService.save(foto1);
 
-        Foto foto2 = new Foto(12347, "2prova.jpeg", "Due Prova", "Foto di prova due");
+        Foto foto2 = new Foto(12347, "https://i.imgur.com/q721iNU.png", "Due Prova", "Foto di prova due");
         foto2 = this.fotoService.save(foto2);
 
-        Foto foto3 = new Foto(12348, "3prova.jpeg", "Tre Prova", "Foto di prova tre");
+        Foto foto3 = new Foto(12348, "https://i.imgur.com/q721iNU.png", "Tre Prova", "Foto di prova tre");
         foto3 = this.fotoService.save(foto3);
         
         System.out.println("Creating Fotografo...");
