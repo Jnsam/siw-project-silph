@@ -44,23 +44,24 @@ public class FotoController {
 	public String addCarrello(@ModelAttribute("carrello") List<Foto> carrello,
 			@RequestParam(value = "idfotos", required = false) Long[] idfotos, BindingResult bindingResult,
 			Model model) {
+		System.out.println(idfotos.length);
 		if (idfotos != null) {
 			Foto foto = null;
 			for (int i = 0; i < idfotos.length; i++) {
 
 				if (fotoService.findById(idfotos[i]) != null) {
-					foto = new Foto();
-					foto.setId(idfotos[i]);
+					foto = fotoService.findById(idfotos[i]);
 					carrello.add(foto);
 				}
 			}
+			System.out.println(carrello.size());
 			for (int i = 0; i < carrello.size(); i++) {
 				System.out.println(carrello.get(i).getTitolo());
 			}
 
 		}
 
-		return "showCarrello";
+		return "fotoList";
 	}
 
 }
