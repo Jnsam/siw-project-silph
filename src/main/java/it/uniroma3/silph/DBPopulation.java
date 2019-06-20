@@ -54,7 +54,7 @@ public class DBPopulation implements ApplicationRunner {
         admin.setPassword(adminPassword);
         admin = this.userRepository.save(admin);
 
-        User guest = new User(2L, "Giuseppe", "Verdi", "giuseppeverdi", null, "GUEST");
+        User guest = new User(2L, "Giuseppe", "Verdi", "giuseppeverdi", null, "ADMIN");
         String guestPassword = new BCryptPasswordEncoder().encode("gvpass");
         guest.setPassword(guestPassword);
         guest = this.userRepository.save(guest);

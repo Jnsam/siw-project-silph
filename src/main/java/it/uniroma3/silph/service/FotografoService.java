@@ -36,5 +36,13 @@ public class FotografoService {
 	public List<Fotografo> findByNomeAndCognome(String nome, String cognome){
 		return this.fotografoRepository.findByNomeAndCognome(nome, cognome);
 	}
+	
+	public boolean alreadyExists(Fotografo fotografo) {
+		List<Fotografo> fotografi = this.fotografoRepository.findByNomeAndCognome(fotografo.getNome(), fotografo.getCognome());
+		if (fotografi.size() > 0)
+			return true;
+		else 
+			return false;
+	}	
 
 }

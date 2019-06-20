@@ -8,4 +8,6 @@ import it.uniroma3.silph.model.Foto;
 
 public interface FotoRepository extends JpaRepository<Foto, Long> {
 	public List<Foto> findByTitolo(String titolo);
+
+	public List<Foto> findByTitoloAndIndirizzo(String titolo, String indirizzo);
 }

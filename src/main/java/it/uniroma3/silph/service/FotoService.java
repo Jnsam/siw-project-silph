@@ -36,4 +36,12 @@ public class FotoService {
 		return this.fotoRepository.findByTitolo(titolo);
 	}
 	
+	public boolean alreadyExists(Foto foto) {
+		List<Foto> fotos = this.fotoRepository.findByTitoloAndIndirizzo(foto.getTitolo(), foto.getIndirizzo());
+		if (fotos.size() > 0)
+			return true;
+		else 
+			return false;
+	}	
+	
 }

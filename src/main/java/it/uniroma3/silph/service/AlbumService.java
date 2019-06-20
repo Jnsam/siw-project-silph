@@ -33,4 +33,12 @@ public class AlbumService {
 			return null;
 	}
 	
+	public boolean alreadyExists(Album album) {
+		List<Album> albums = this.albumRepository.findByTitolo(album.getTitolo());
+		if (albums.size() > 0)
+			return true;
+		else 
+			return false;
+	}	
+	
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<title
+	th:text="'Richiesta di ' + ${richiesta.nome} + ' ' + ${richiesta.cognome}">Richiesta</title>
+</head>
+<body>
+	<div>
+	
+		<div th:text="'Richiesta ID: ' + ${richiesta.id}">ID</div><br />
+		
+		<div th:text="'Richiedente: ' + ${richiesta.nome} + ' ' + ${richiesta.cognome}">Richiedente</div><br />
+		
+		<div th:text="'Email: ' + ${richiesta.email}">Email</div><br />
+		
+		<div th:text="'Data: ' + ${#dates.format(richiesta.dataCreazione, 'dd-MMM-yyyy HH:mm')}"></div><br />
+		
+		<br />
+		<div th:if="${richiesta.accettato}">Richiesta Accettata!</div>
+		
+		<div th:unless="${richiesta.accettato}">Richiesta non ancora accettata
+			<h5 th:if="${allowed}">
+    			<a th:href="@{'/admin/acceptRichiesta' + '/' + ${richiesta.id}}" th:text="'ACCETTA'">ACCETTA</a>
+			</h5>
+		
+		</div>
+		
+		<div>Foto Richieste:</div><br />
+
+		<table>
+			<tr th:each="foto : ${richiesta.fotos}">
+				<td><a
+					th:href="@{'http://www.sitoimmagini.it' + '/' + ${foto.indirizzo}}"><span
+						th:text="${foto.titolo}">Titolo</span></a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

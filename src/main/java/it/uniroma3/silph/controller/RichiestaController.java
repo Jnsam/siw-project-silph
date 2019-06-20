@@ -43,7 +43,7 @@ public class RichiestaController {
 	}
 
 
-	@RequestMapping("/richieste")
+	@RequestMapping("/admin/richieste")
 	public String richieste(Model model) {
 		model.addAttribute("richieste", this.richiestaService.findAll());
 		return "richiestaList";
@@ -96,9 +96,20 @@ public class RichiestaController {
 	}
 
 
-	@RequestMapping(value = "/richiesta/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/richiesta/{id}", method = RequestMethod.GET)
 	public String getRichiesta(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("richiesta", this.richiestaService.findById(id));
+		Boolean allowed = true;
+		model.addAttribute("allowed",allowed);
+		return "showRichiesta";
+	}
+	
+	@RequestMapping(value = "/admin/acceptRichiesta/{id}", method = RequestMethod.GET)
+	public String acceptRichiesta(@PathVariable("id") Long id, Model model) {
+		Richiesta richiesta = this.richiestaService.findById(id);
+		richiesta.setAccettato(true);
+		richiesta = this.richiestaService.save(richiesta);
+		model.addAttribute("richiesta", richiesta);
 		return "showRichiesta";
 	}
 
@@ -113,11 +124,13 @@ public class RichiestaController {
 
 			status.setComplete();
 			 
-			model.addAttribute("richieste", this.richiestaService.findAll());
+			model.addAttribute("richiesta", richiesta);
 			
-			return "richiestaList";
+			return "showRichiesta";
 		}
 
 		return "richiestaForm";
 	}
+	
+	
 }

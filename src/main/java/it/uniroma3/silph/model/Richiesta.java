@@ -4,12 +4,15 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,8 +45,8 @@ public class Richiesta {
 	private User user;
 	**/
 	
-	@OneToMany
-	@JoinColumn(name = "richiesta_id")
+    @ManyToMany(cascade=CascadeType.MERGE)  
+    @JoinTable(name="foto_richiesta", joinColumns=@JoinColumn(name="richiesta_id"), inverseJoinColumns=@JoinColumn(name="foto_id"))
 	private List<Foto> fotos = new LinkedList<Foto>();
 
 	public Richiesta() {
