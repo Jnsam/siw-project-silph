@@ -1,0 +1,21 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Richieste</title>
+</head>
+<body>
+    <div>
+    	<h4>Richieste</h4>
+		<div>
+			<table>
+				<tr>
+					<th>Richiesta: </th>
+				</tr>
+				<tr th:each="richiesta : ${richieste}">
+					<td><a th:href="@{'/richiesta' + '/' + ${richiesta.id}}"><span th:text="${#dates.format(richiesta.dataCreazione, 'dd-MMM-yyyy')} + ': ' + ${richiesta.email} + ': ' + ${richiesta.nome} + ' ' + ${richiesta.cognome}">DataCreazione: Email: Nome Cognome</span></a></td>					
+                </tr>
+            </table>
+   		</div>
+    </div>
+</body>
+</html>

@@ -33,5 +33,11 @@ public class FotografoController {
         model.addAttribute("fotografo", this.fotografoService.findById(id));
     	return "showFotografo";
     }
+    
+	@RequestMapping("/fotografo/fotos/{id}")
+	public String fotografoFotos(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("fotos", this.fotografoService.findById(id).getFotos());
+		return "fotoList";
+	}
 
 }
