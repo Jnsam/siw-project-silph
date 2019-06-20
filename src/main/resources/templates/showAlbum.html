@@ -1,31 +1,98 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns="http://www.w3.org/1999/html">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title th:text="${album.titolo}">Album</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
 </head>
-<body>
-	<div>
-		<h4 th:text="${album.titolo}">Album</h4>
-		<span th:text="${album.descrizione != null} ? ${album.descrizione}">Descrizione</span>
-		<h5
-			th:text="${album.fotografo != null} ? 'Da:' + ${album.fotografo.nome} + ' ' + ${album.fotografo.cognome}"></h5>
-		<div th:if="${not #lists.isEmpty(album.fotos)}">
-			<form th:action="@{/addCarrello}" method="post">
-				<table>
-					<tr th:each="foto : ${album.fotos}">
-						<td><input type="checkbox" name="idfotos"
-							th:value="${foto.id}" /><a
-							th:href="@{'http://www.sitoimmagini.it' + '/' + ${foto.indirizzo}}"><span
-								th:text="${foto.titolo}">Titolo</span></a></td>
-					</tr>
-				</table>
-				<input type="submit" value="Aggiungi al carrello" />
-			</form>
-		</div>
-		<div th:if="${#lists.isEmpty(album.fotos)}">
-			<span th:text="'Nessuna Album Trovata!'"></span>
-		</div>
-	</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <div class="w3-display-bottomleft w3-container w3-text-black">
+            <h2>Title</h2>
+          </div>
+        </div>
+        <div class="w3-container">
+          <p class="w3-large"><i class="fa fa-bars fa-fw w3-margin-right w3-large w3-text-teal"></i>Menu</p>
+          
+          <p><a href="/fotos">Lista Immagini</a></p>
+          <p><a href="/fotografi">Lista Fotografi</a></p>
+          <p><a href="/albums">Lista Album</a></p>
+          <p class="w3-large"><i class="fa fa-bars fa-fw w3-margin-right w3-large w3-text-teal"></i><a href="/login">Login</a></p>
+          <p class="w3-large"><i class="fa fa-bars fa-fw w3-margin-right w3-large w3-text-teal"></i><a href="/logout">Logout</a></p>
+          <hr>
+
+          <br>
+
+          <br>
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16" th:text="${album.titolo}" ><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i></h2>
+        <h5 class="w3-opacity"><span th:text="${album.descrizione != null} ? ${album.descrizione}">Descrizione</span></h5>
+        <h5 class="w3-opacity" th:text="${album.fotografo != null} ? 'Da:' + ${album.fotografo.nome} + ' ' + ${album.fotografo.cognome}"><b></b></h5>
+        <div class="w3-container">
+        
+          <hr>
+        </div>
+        <div th:if="${not #lists.isEmpty(album.fotos)}">
+          <form th:action="@{/addCarrello}" method="post">
+
+        <div class="w3-container" th:each="foto : ${album.fotos}">
+            <h5 class="w3-opacity"><b><input type="checkbox" name="idfotos" th:value="${foto.id}" />
+              <a th:href="@{${foto.indirizzo}}"><span th:text="${foto.titolo}">Titolo</span></a></b></h5>
+          <img th:src="@{${foto.indirizzo}}" alt="img" width="300">
+          <hr>
+        </div>
+
+
+      <input type="submit" value="Aggiungi al carrello" />
+      </form>
+      </div>
+        <div class="w3-container" th:if="${#lists.isEmpty(album.fotos)}">
+          <h5 class="w3-opacity"><b><span th:text="'Nessuna Foto Trovata!'"></span></b></h5>
+          <hr>
+        </div>
+
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+  <p>Progetto SIW</p>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
 </body>
 </html>
