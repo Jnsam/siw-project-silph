@@ -1,18 +1,18 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Foto</title>
+    <title>Fotografi</title>
 </head>
 <body>
     <div>
-    	<h4>Foto</h4>
+    	<h4>Fotografi</h4>
 		<div>
 			<table>
 				<tr>
-					<th>Immagine: </th>
+					<th>Fotografo: </th>
 				</tr>
-				<tr th:each="foto : ${fotos}">
-					<td><a th:href="@{'http://www.sitoimmagini.it' + '/' + ${foto.indirizzo}}"><span th:text="${foto.titolo}">Titolo</span></a></td>					
+				<tr th:each="fotografo : ${fotografi}">
+					<td><a th:href="@{'/fotografo' + '/' + ${fotografo.id}}"><span th:text="${fotografo.nome} + ' ' + ${fotografo.cognome}">Nome Cognome</span></a></td>					
                 </tr>
             </table>
    		</div>

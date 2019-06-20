@@ -31,4 +31,9 @@ public class FotoService {
 		else
 			return null;
 	}
+
+	public List<Foto> findByTitolo(String titolo) {
+		return this.fotoRepository.findByTitolo(titolo);
+	}
+	
 }

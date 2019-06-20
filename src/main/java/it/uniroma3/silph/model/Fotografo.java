@@ -1,5 +1,6 @@
 package it.uniroma3.silph.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -23,10 +24,19 @@ public class Fotografo {
 	private String cognome;
 	
 	@OneToMany(mappedBy = "fotografo")
-	private List<Foto> fotos;
+	private List<Foto> fotos = new LinkedList<Foto>();
 
 	@OneToMany(mappedBy = "fotografo")
-	private List<Album> albums;
+	private List<Album> albums = new LinkedList<Album>();
+
+	public Fotografo() {
+	}
+
+	public Fotografo(long id, String nome, String cognome) {
+		this.id = id;
+		this.nome = nome;
+		this.cognome = cognome;
+	}
 
 	public Fotografo(long id, String nome, String cognome, List<Foto> fotos, List<Album> albums) {
 		this.id = id;
@@ -93,6 +103,14 @@ public class Fotografo {
 	}
 
 	/**
+	 * Aggiungi Foto
+	 */
+	public void addFoto(Foto foto) {
+        fotos.add(foto);
+        foto.setFotografo(this);
+	}
+
+	/**
 	 * @return the albums
 	 */
 	public List<Album> getAlbums() {
@@ -104,6 +122,14 @@ public class Fotografo {
 	 */
 	public void setAlbums(List<Album> albums) {
 		this.albums = albums;
+	}
+	
+	/**
+	 * Aggiungi Foto
+	 */
+	public void addAlbum(Album album) {
+        albums.add(album);
+        album.setFotografo(this);
 	}
 
 }

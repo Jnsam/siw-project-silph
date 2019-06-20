@@ -1,5 +1,6 @@
 package it.uniroma3.silph.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -28,22 +29,24 @@ public class Album {
 	private Fotografo fotografo;
 	
 	@OneToMany(mappedBy = "album")
-	private List<Foto> fotos;
+	private List<Foto> fotos = new LinkedList<Foto>();
 
-	/**
-	 * @param id
-	 * @param titolo
-	 * @param desc
-	 * @param fotografo
-	 * @param fotos
-	 */
-	public Album(long id, String titolo, String desc, Fotografo fotografo, List<Foto> fotos) {
+	public Album() {
+	}
+ 
+	public Album(String titolo, String descrizione) {
+		this.titolo = titolo;
+		this.descrizione = descrizione;
+	}
+
+	public Album(long id, String titolo, String descrizione, Fotografo fotografo, List<Foto> fotos) {
 		this.id = id;
 		this.titolo = titolo;
-		this.descrizione = desc;
+		this.descrizione = descrizione;
 		this.fotografo = fotografo;
 		this.fotos = fotos;
 	}
+
 
 	public long getId() {
 		return id;
@@ -61,12 +64,12 @@ public class Album {
 		this.titolo = titolo;
 	}
 
-	public String getDesc() {
+	public String getDescrizione() {
 		return descrizione;
 	}
 
-	public void setDesc(String desc) {
-		this.descrizione = desc;
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 
 	public Fotografo getFotografo() {
@@ -84,5 +87,14 @@ public class Album {
 	public void setFotos(List<Foto> fotos) {
 		this.fotos = fotos;
 	}
+	
+	/**
+	 * Aggiungi Foto
+	 */
+	public void addFoto(Foto foto) {
+        fotos.add(foto);
+        foto.setAlbum(this);
+	}
+
 
 }

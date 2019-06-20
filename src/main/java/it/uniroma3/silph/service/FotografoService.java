@@ -32,5 +32,9 @@ public class FotografoService {
 		else
 			return null;
 	}
+	
+	public List<Fotografo> findByNomeAndCognome(String nome, String cognome){
+		return this.fotografoRepository.findByNomeAndCognome(nome, cognome);
+	}
 
 }

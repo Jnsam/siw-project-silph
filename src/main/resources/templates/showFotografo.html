@@ -1,0 +1,39 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title th:text="${fotografo.nome} + ' ' + ${fotografo.cognome}">Fotografo</title>
+</head>
+<body>
+    <div>
+    	<h4 th:text="${fotografo.nome} + ' ' + ${fotografo.cognome}">Fotografo</h4>
+    	
+    	<br />
+		
+		<h5>Foto:</h5>
+		<div th:if="${not #lists.isEmpty(fotografo.fotos)}">
+			<table>
+				<tr th:each="foto : ${fotografo.fotos}">
+					<td><a th:href="@{'http://www.sitoimmagini.it' + '/' + ${foto.indirizzo}}"><span th:text="${foto.titolo}">Titolo</span></a></td>					
+                </tr>
+            </table>
+   		</div>
+   		<div th:if="${#lists.isEmpty(fotografo.fotos)}">
+   			<span th:text="'Nessuna Foto Trovata!'"></span>
+		</div>
+		
+		<br />
+		
+		<h5>Albums:</h5>
+		<div th:if="${not #lists.isEmpty(fotografo.albums)}">
+			<table>
+				<tr th:each="album : ${fotografo.albums}">
+					<td><a th:href="@{'/album' + '/' + ${album.id}}"><span th:text="${album.titolo}">Titolo</span></a></td>					
+                </tr>
+            </table>
+   		</div>
+   		<div th:if="${#lists.isEmpty(fotografo.albums)}">
+   			<span th:text="'Nessuna Album Trovata!'"></span>
+		</div>
+    </div>
+</body>
+</html>

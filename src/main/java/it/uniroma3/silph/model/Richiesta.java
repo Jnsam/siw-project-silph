@@ -21,7 +21,9 @@ public class Richiesta {
 	private long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private java.util.Date dataCreazione;
+	private Date dataCreazione = new Date();
+	
+	private boolean accettato = false;
 	
 	@ManyToOne
 	@JoinColumn(name = "users_id")
@@ -30,6 +32,9 @@ public class Richiesta {
 	@OneToMany
 	@JoinColumn(name = "richiesta_id")
 	private List<Foto> fotos;
+
+	public Richiesta() {
+	}
 
 	public Richiesta(long id, Date dataCreazione, User user, List<Foto> fotos) {
 		this.id = id;
@@ -67,6 +72,20 @@ public class Richiesta {
 	}
 
 	/**
+	 * @return the accettato
+	 */
+	public boolean isAccettato() {
+		return accettato;
+	}
+
+	/**
+	 * @param accettato the accettato to set
+	 */
+	public void setAccettato(boolean accettato) {
+		this.accettato = accettato;
+	}
+
+	/**
 	 * @return the user
 	 */
 	public User getUser() {
@@ -93,4 +112,12 @@ public class Richiesta {
 	public void setFotos(List<Foto> fotos) {
 		this.fotos = fotos;
 	}
+	
+	/**
+	 * Aggiungi Foto
+	 */
+	public void addFoto(Foto foto) {
+        fotos.add(foto);
+	}
+
 }
