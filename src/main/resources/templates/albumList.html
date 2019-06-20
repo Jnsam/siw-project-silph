@@ -1,21 +1,91 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Albums</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
 </head>
-<body>
-    <div>
-    	<h4>Albums</h4>
-		<div>
-			<table>
-				<tr>
-					<th>Album: </th>
-				</tr>
-				<tr th:each="album : ${albums}">
-					<td><a th:href="@{'/album' + '/' + ${album.id}}"><span th:text="${album.titolo}">Titolo</span></a></td>					
-                </tr>
-            </table>
-   		</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <div class="w3-display-bottomleft w3-container w3-text-black">
+            <h2>Title</h2>
+          </div>
+        </div>
+        <div class="w3-container">
+          <p class="w3-large"><i class="fa fa-bars fa-fw w3-margin-right w3-large w3-text-teal"></i>Menu</p>
+          
+          <p><a href="/fotos">Lista Immagini</a></p>
+          <p><a href="/fotografi">Lista Fotografi</a></p>
+          <p><a href="/albums">Lista Album</a></p>
+          <p class="w3-large"><i class="fa fa-bars fa-fw w3-margin-right w3-large w3-text-teal"></i><a href="/login">Login</a></p>
+          <p class="w3-large"><i class="fa fa-bars fa-fw w3-margin-right w3-large w3-text-teal"></i><a href="/logout">Logout</a></p>
+          <hr>
+
+          <br>
+
+          <br>
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
     </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Lista Albums</h2>
+        <div class="w3-container">
+        
+          <hr>
+        </div>
+        <div th:if="${not #lists.isEmpty(albums)}">
+
+        <div class="w3-container" th:each="album : ${albums}">
+            <h5 class="w3-opacity"><b>
+              <a th:href="@{'/album' + '/' + ${album.id}}"><span th:text="${album.titolo}">Titolo</span></a></b></h5>
+          <hr>
+        </div>
+
+      </div>
+        <div class="w3-container" th:if="${#lists.isEmpty(albums)}">
+          <h5 class="w3-opacity"><b><span th:text="'Nessun Album Trovata!'"></span></b></h5>
+          <hr>
+        </div>
+
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+  <p>Progetto SIW</p>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
 </body>
 </html>
