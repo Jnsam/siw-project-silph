@@ -70,6 +70,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
       <input type="submit" value="Rimuovi al carrello" />
       </form>
+      <br>
+      <h2 class="w3-text-grey w3-padding-16"><a th:href="@{/addRichiesta}">Invia la Richiesta</a></h2>
       </div>
         <div class="w3-container" th:if="${#lists.isEmpty(carrello)}">
           <h5 class="w3-opacity"><b><span th:text="'Il Carrello è vuoto'"></span></b></h5>
