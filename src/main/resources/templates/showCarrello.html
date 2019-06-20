@@ -1,0 +1,24 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Carrello</title>
+</head>
+<body>
+    <div>
+    	<h4>Carrello</h4>
+		<div>
+		<form th:action="@{/removeCarrello}" method="post">
+			<table>
+				<tr>
+					<th>Immagine: </th>
+				</tr>
+				<tr th:each="foto : ${carrello}">
+					<td><input type="checkbox" name="idfotos" th:value="${foto.id}"/><a th:href="@{'http://www.sitoimmagini.it' + '/' + ${foto.indirizzo}}"><span th:text="${foto.titolo}">Titolo</span></a></td>					
+                </tr>
+            </table>
+            <input type="submit" value="Rimuovi dal carrello"/>
+            </form>
+   		</div>
+    </div>
+</body>
+</html>

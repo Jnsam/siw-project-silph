@@ -98,6 +98,40 @@ public class Foto {
 	public void setAlbum(Album album) {
 		this.album = album;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((indirizzo == null) ? 0 : indirizzo.hashCode());
+		result = prime * result + ((titolo == null) ? 0 : titolo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Foto other = (Foto) obj;
+		if (id != other.id)
+			return false;
+		if (indirizzo == null) {
+			if (other.indirizzo != null)
+				return false;
+		} else if (!indirizzo.equals(other.indirizzo))
+			return false;
+		if (titolo == null) {
+			if (other.titolo != null)
+				return false;
+		} else if (!titolo.equals(other.titolo))
+			return false;
+		return true;
+	}
 	
 	
 

@@ -61,7 +61,23 @@ public class FotoController {
 
 		}
 
-		return "fotoList";
+		return "showCarrello";
+	}
+	
+	@RequestMapping(value = "/removeCarrello", method = RequestMethod.POST)
+	public String removeCarrello(@ModelAttribute("carrello") List<Foto> carrello,
+			@RequestParam(value = "idfotos", required = false) Long[] idfotos, BindingResult bindingResult,
+			Model model) {
+		if (idfotos != null) {
+			Foto foto = null;
+			for (int i = 0; i < idfotos.length; i++) {
+				if (fotoService.findById(idfotos[i]) != null) {
+					foto = fotoService.findById(idfotos[i]);
+					carrello.remove(foto);
+				}
+			}
+		}
+		return "showCarrello";
 	}
 
 }
